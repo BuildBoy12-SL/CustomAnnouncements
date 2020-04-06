@@ -7,7 +7,7 @@
 
 | Config Option | Value Type | Default Value | Description |
 |:------------------------:|:----------:|:-------------:|:------------------------------------------:|
-| `ca_enable` | bool | true | Enabled/disabled the plugin. |
+| `ca_enable` | bool | true | Enables/disabled the plugin. |
 | `ca_chaos_spawn` | string |  | Announcement that will be played when Chaos spawns. |
 | `ca_mtf_spawn` | string |  | Announcement that will be played when MTF spawns. |
 | `ca_roundstart` | string |  | Announcement that will be played when the round starts. |
