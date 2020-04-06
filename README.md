@@ -17,7 +17,7 @@
 | `ca_join` | dict |  | People and their corresponding announcement |
 
 - __Variables for 'ca_mtf_spawn' for current spawn info: %NtfLetter%, %NtfNumber%, %ScpsLeft%__
-- __Usage for ca_JoinMsgs: PlayerID@steam:announcement, PlayerID@discord:announcement__
+- __Usage for ca_join: PlayerID@steam:announcement, PlayerID@discord:announcement__
 
 ## Commands
 ### Note you can use v/p instead of view/play
