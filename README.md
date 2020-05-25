@@ -28,6 +28,7 @@
 
 ## Commands
 ### Note you can use v/p instead of view/play
+#### Requires permission `ca_main` in EXILED_Permissions
 - ca: Displays commands and info
 
 - chs (view/play): Plays configured chaos announcement
