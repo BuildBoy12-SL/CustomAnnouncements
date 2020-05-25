@@ -17,9 +17,9 @@
 | `ca_roundend` | string |  | Announcement that will be played when the round ends. |
 | `ca_roundend_noise` | bool | false | If CASSIE should make the default noises when the round ends. |
 | `ca_dclass_escape` | string |  | Announcement that will be played when a ClassD escapes. |
-| `ca_dclass_escape_noise` | bool | false | If CASSIE should make the default noises a ClassD escapes. |
-| `ca_scientist_escape` | string |  | Announcement that will be played when a Scientist escapes. |
-| `ca_scientist_escape_noise` | bool | false | If CASSIE should make the default noises a Scientist escapes. |
+| `ca_dclass_escape_noise` | bool | false | If CASSIE should make the default noises when a ClassD escapes. |
+| `ca_science_escape` | string |  | Announcement that will be played when a Scientist escapes. |
+| `ca_science_escape_noise` | bool | false | If CASSIE should make the default noises when a Scientist escapes. |
 | `ca_join` | dict |  | People and their corresponding announcement. |
 | `ca_join_noise` | bool | false | If CASSIE should make the default noises when a player join is announced. |
 
