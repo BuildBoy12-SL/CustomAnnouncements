@@ -8,7 +8,7 @@
 - Variables in every announcement contains the following:
 
 | Config Option | Value Type | Description |
-|:------------------------:|:----------:|:-------------:|:------------------------------------------:|
+|:------------------------:|:----------:|:------------------------------------------:|
 | `message` | string | Message that CASSIE will announce. |
 | `is_noisy` | bool | If there should be background static and the starting/stopping noise. |
 | `is_glitchy` | bool | If there should be glitches and jams randomly in the broadcast. |
