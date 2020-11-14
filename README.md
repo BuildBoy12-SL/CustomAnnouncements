@@ -28,7 +28,7 @@ Solely for PlayerJoined, the event will play when a user joins with an id contai
 
 ## Commands
 ### Note you can use v/p instead of view/play
-#### Requires permission `ca.main` in EXILED_Permissions
+#### Each command requires the permission `ca.{command}`. Example: `ca.chs`
 - ca: Displays commands and info
 
 - chs (view/play): Plays configured ChaosSpawn announcement
