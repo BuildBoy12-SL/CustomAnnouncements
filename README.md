@@ -18,6 +18,7 @@
 
 Solely for PlayerJoined, the event will play when a user joins with an id contained in this list:
 | Config Option | Value Type | Description |
+|:------------------------:|:----------:|:------------------------------------------:|
 | `user_ids` | List\<string\> | Announcement that will be played when the round starts. |
 
 
