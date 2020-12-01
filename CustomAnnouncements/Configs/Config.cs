@@ -15,6 +15,6 @@ namespace CustomAnnouncements
         public PlayerJoined PlayerJoined { get; private set; } = new PlayerJoined();
         public RoundEnd RoundEnd { get; private set; } = new RoundEnd();
         public RoundStart RoundStart { get; private set; } = new RoundStart();
-        public ScpTerminated ScpTerminated { get; private set; } = new ScpTerminated();
+        // public ScpTerminated ScpTerminated { get; private set; } = new ScpTerminated();
     }
 }

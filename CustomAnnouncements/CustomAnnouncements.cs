@@ -18,7 +18,7 @@
         {
             Instance = this;
             MapEvents.AnnouncingNtfEntrance += _mapHandlers.OnAnnouncingNtfEntrance;
-            MapEvents.AnnouncingScpTermination += _mapHandlers.OnAnnouncingScpTermination;
+            //MapEvents.AnnouncingScpTermination += _mapHandlers.OnAnnouncingScpTermination;
             PlayerEvents.Escaping += _playerHandlers.OnEscaping;
             PlayerEvents.Joined += _playerHandlers.OnPlayerJoin;
             ServerEvents.RespawningTeam += _serverHandlers.OnRespawningTeam;
@@ -30,7 +30,7 @@
         public override void OnDisabled()
         {
             MapEvents.AnnouncingNtfEntrance -= _mapHandlers.OnAnnouncingNtfEntrance;
-            MapEvents.AnnouncingScpTermination -= _mapHandlers.OnAnnouncingScpTermination;
+            //MapEvents.AnnouncingScpTermination -= _mapHandlers.OnAnnouncingScpTermination;
             PlayerEvents.Escaping -= _playerHandlers.OnEscaping;
             PlayerEvents.Joined -= _playerHandlers.OnPlayerJoin;
             ServerEvents.RespawningTeam -= _serverHandlers.OnRespawningTeam;

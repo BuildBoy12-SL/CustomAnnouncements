@@ -18,7 +18,7 @@ namespace CustomAnnouncements.Commands
             RegisterCommand(new PlayerJoined());
             RegisterCommand(new RoundEnd());
             RegisterCommand(new RoundStart());
-            RegisterCommand(new ScpTerminated());
+            //RegisterCommand(new ScpTerminated());
         }
 
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)

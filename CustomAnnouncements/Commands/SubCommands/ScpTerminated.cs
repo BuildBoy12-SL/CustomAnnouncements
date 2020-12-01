@@ -5,7 +5,7 @@ namespace CustomAnnouncements.Commands.SubCommands
     using System;
     using static CustomAnnouncements;
     
-    public class ScpTerminated : ICommand
+    /*public class ScpTerminated : ICommand
     {
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -47,5 +47,5 @@ namespace CustomAnnouncements.Commands.SubCommands
         public string Command => "scpterminated";
         public string[] Aliases => new[] {"st"};
         public string Description => "Views or plays the ScpTerminated announcement.";
-    }
+    }*/
 }

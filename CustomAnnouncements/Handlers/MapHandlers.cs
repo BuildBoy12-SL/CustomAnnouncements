@@ -10,13 +10,12 @@ namespace CustomAnnouncements.Handlers
 
     public class MapHandlers
     {
-        public void OnAnnouncingScpTermination(AnnouncingScpTerminationEventArgs ev)
+        /*public void OnAnnouncingScpTermination(AnnouncingScpTerminationEventArgs ev)
         {
             if (Instance.Config.ScpTerminated.IsNullOrEmpty())
                 return;
 
             ev.IsAllowed = false;
-
             string terminationCause;
             var damageType = ev.HitInfo.GetDamageType();
             if (damageType == DamageTypes.Tesla)
@@ -68,7 +67,7 @@ namespace CustomAnnouncements.Handlers
                 new Tuple<string, object>("RemainingScps", scpsRemaining),
             });
             Instance.Methods.PlayAnnouncement(Instance.Config.ScpTerminated, overrideMessage);
-        }
+        }*/
 
         public void OnAnnouncingNtfEntrance(AnnouncingNtfEntranceEventArgs ev)
         {
