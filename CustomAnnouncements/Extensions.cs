@@ -5,26 +5,8 @@
 
     public static class Extensions
     {
-        public static bool IsNullOrEmpty(this IAnnouncement announcement)
-        {
-            return string.IsNullOrEmpty(announcement.Message);
-        }
-
-        /*
-            A great tool to replace strings based on an array of Tuples.
-            Example usage:
-                string myStr = "I'm a $job who likes $animals and likes $greatReplacementTools! Did I mention I like $animals?$";
-                Console.WriteLine(myStr);
-                string convertedStr = TokenReplace.ReplaceAfterToken(myStr, '$', new Tuple<string, object>[] {
-                    new Tuple<string, object>("job", "programmer"),
-                    new Tuple<string, object>("animal", "dog"),
-                    new Tuple<string, object>("music", "classical") // won't be used
-                    });
-                Console.WriteLine(convertedStr);
-            Output:
-                I'm a $job who likes $animals and likes $greatReplacementTools! Did I mention I like $animals?$
-                I'm a programmer who likes dogs and likes $greatReplacementTools! Did I mention I like dogs?$
-        */
+        public static bool IsNullOrEmpty(this IAnnouncement announcement) =>
+            string.IsNullOrEmpty(announcement.Message);
 
         /// <summary>
         /// Optimized method that replaces a <see cref="string"/> based on an <see cref="Tuple[]"/>

@@ -23,7 +23,7 @@ namespace CustomAnnouncements.Commands
 
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            response = "Please enter a valid subcommand! Available:\nchs, ed, es, ms, pj, re, rs, st";
+            response = "Please enter a valid subcommand! Available:\nchs, ed, es, ms, pj, re, rs";
             return false;
         }
 

@@ -4,7 +4,7 @@ namespace CustomAnnouncements.Commands.SubCommands
     using Exiled.Permissions.Extensions;
     using System;
     using static CustomAnnouncements;
-    
+
     /*public class ScpTerminated : ICommand
     {
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)

@@ -2,9 +2,10 @@ namespace CustomAnnouncements.Commands.SubCommands
 {
     using CommandSystem;
     using Exiled.Permissions.Extensions;
+    using MEC;
     using System;
     using static CustomAnnouncements;
-    
+
     public class ChaosSpawn : ICommand
     {
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
@@ -20,7 +21,7 @@ namespace CustomAnnouncements.Commands.SubCommands
                 response = "The ChaosSpawn announcement is not set in the config.";
                 return true;
             }
-            
+
             if (arguments.Count != 1)
             {
                 response = "Syntax: ca chs <v/p>";
@@ -32,7 +33,7 @@ namespace CustomAnnouncements.Commands.SubCommands
                 case "p":
                 case "play":
                     response = "Playing ChaosSpawn announcement.";
-                    Instance.Methods.PlayAnnouncement(Instance.Config.ChaosSpawn);
+                    Timing.RunCoroutine(Methods.PlayAnnouncement(Instance.Config.ChaosSpawn));
                     return true;
                 case "v":
                 case "view":

@@ -9,14 +9,16 @@
     public class CustomAnnouncements : Plugin<Config>
     {
         internal static CustomAnnouncements Instance;
-        public readonly Methods Methods = new Methods();
-        private readonly MapHandlers _mapHandlers = new MapHandlers();
-        private readonly PlayerHandlers _playerHandlers = new PlayerHandlers();
-        private readonly ServerHandlers _serverHandlers = new ServerHandlers();
+        private MapHandlers _mapHandlers;
+        private PlayerHandlers _playerHandlers;
+        private ServerHandlers _serverHandlers;
 
         public override void OnEnabled()
         {
             Instance = this;
+            _mapHandlers = new MapHandlers();
+            _playerHandlers = new PlayerHandlers();
+            _serverHandlers = new ServerHandlers();
             MapEvents.AnnouncingNtfEntrance += _mapHandlers.OnAnnouncingNtfEntrance;
             //MapEvents.AnnouncingScpTermination += _mapHandlers.OnAnnouncingScpTermination;
             PlayerEvents.Escaping += _playerHandlers.OnEscaping;
@@ -36,6 +38,9 @@
             ServerEvents.RespawningTeam -= _serverHandlers.OnRespawningTeam;
             ServerEvents.RoundEnded -= _serverHandlers.OnRoundEnd;
             ServerEvents.RoundStarted -= _serverHandlers.OnRoundStart;
+            _mapHandlers = null;
+            _playerHandlers = null;
+            _serverHandlers = null;
             Instance = null;
             base.OnDisabled();
         }

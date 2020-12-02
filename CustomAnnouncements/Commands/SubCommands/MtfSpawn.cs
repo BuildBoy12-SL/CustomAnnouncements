@@ -2,9 +2,10 @@ namespace CustomAnnouncements.Commands.SubCommands
 {
     using CommandSystem;
     using Exiled.Permissions.Extensions;
+    using MEC;
     using System;
     using static CustomAnnouncements;
-    
+
     public class MtfSpawn : ICommand
     {
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
@@ -20,7 +21,7 @@ namespace CustomAnnouncements.Commands.SubCommands
                 response = "The MtfSpawn announcement is not set in the config.";
                 return true;
             }
-            
+
             if (arguments.Count != 1)
             {
                 response = "Syntax: ca ms <v/p>";
@@ -32,7 +33,7 @@ namespace CustomAnnouncements.Commands.SubCommands
                 case "p":
                 case "play":
                     response = "Playing MtfSpawn announcement.";
-                    Instance.Methods.PlayAnnouncement(Instance.Config.MtfSpawn);
+                    Timing.RunCoroutine(Methods.PlayAnnouncement(Instance.Config.MtfSpawn));
                     return true;
                 case "v":
                 case "view":

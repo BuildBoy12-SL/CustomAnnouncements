@@ -2,9 +2,10 @@ namespace CustomAnnouncements.Commands.SubCommands
 {
     using CommandSystem;
     using Exiled.Permissions.Extensions;
+    using MEC;
     using System;
     using static CustomAnnouncements;
-    
+
     public class EscapeScientist : ICommand
     {
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
@@ -20,7 +21,7 @@ namespace CustomAnnouncements.Commands.SubCommands
                 response = "The EscapeScientist announcement is not set in the config.";
                 return true;
             }
-            
+
             if (arguments.Count != 1)
             {
                 response = "Syntax: ca es <v/p>";
@@ -32,7 +33,7 @@ namespace CustomAnnouncements.Commands.SubCommands
                 case "p":
                 case "play":
                     response = "Playing EscapeScientist announcement.";
-                    Instance.Methods.PlayAnnouncement(Instance.Config.EscapeScientist);
+                    Timing.RunCoroutine(Methods.PlayAnnouncement(Instance.Config.EscapeScientist));
                     return true;
                 case "v":
                 case "view":

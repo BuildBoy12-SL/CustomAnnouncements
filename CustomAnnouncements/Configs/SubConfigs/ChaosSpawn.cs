@@ -1,4 +1,4 @@
-namespace CustomAnnouncements.SubConfigs
+namespace CustomAnnouncements.Configs.SubConfigs
 {
     using System.ComponentModel;
 
@@ -18,5 +18,8 @@ namespace CustomAnnouncements.SubConfigs
 
         [Description("Chance that a jam can occur.")]
         public float JamChance { get; set; } = 1;
+
+        [Description("Seconds before the announcement will play after the event fires.")]
+        public float Delay { get; set; }
     }
 }

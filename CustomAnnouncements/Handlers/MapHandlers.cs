@@ -4,6 +4,7 @@ namespace CustomAnnouncements.Handlers
     using Exiled.Events.EventArgs;
     using Respawning;
     using Respawning.NamingRules;
+    using MEC;
     using System;
     using System.Linq;
     using static CustomAnnouncements;
@@ -81,7 +82,7 @@ namespace CustomAnnouncements.Handlers
                 new Tuple<string, object>("UnitName", ev.UnitName),
                 new Tuple<string, object>("UnitNumber", ev.UnitNumber)
             });
-            Instance.Methods.PlayAnnouncement(Instance.Config.MtfSpawn, overrideMessage);
+            Timing.RunCoroutine(Methods.PlayAnnouncement(Instance.Config.MtfSpawn, overrideMessage));
         }
     }
 }

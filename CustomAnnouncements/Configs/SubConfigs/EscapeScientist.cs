@@ -1,4 +1,4 @@
-namespace CustomAnnouncements.SubConfigs
+namespace CustomAnnouncements.Configs.SubConfigs
 {
     public class EscapeScientist : IAnnouncement
     {
@@ -7,5 +7,6 @@ namespace CustomAnnouncements.SubConfigs
         public bool IsGlitchy { get; set; }
         public float GlitchChance { get; set; }
         public float JamChance { get; set; }
+        public float Delay { get; set; }
     }
 }
