@@ -2,6 +2,7 @@
 {
     using Exiled.API.Features;
     using Handlers;
+    using System;
     using MapEvents = Exiled.Events.Handlers.Map;
     using PlayerEvents = Exiled.Events.Handlers.Player;
     using ServerEvents = Exiled.Events.Handlers.Server;
@@ -46,5 +47,6 @@
         }
 
         public override string Author => "Build";
+        public override Version Version => new Version(1, 1, 2);
     }
 }
