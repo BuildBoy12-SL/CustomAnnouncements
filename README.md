@@ -39,7 +39,7 @@ Solely for PlayerJoined, the event will play when a user joins with an id contai
 - Variables for 'NtfSpawn' under the Message variable include:
 | Variable | Description |
 |:------------------------:|:------------------------------------------:|
-| `$UnitName` | The nato representation of the mtf squad. (Ex. Bravo-9 will return nato_b)
+| `$UnitName` | The nato representation of the mtf squad. (Ex. Bravo-9 will return nato_b) |
 | `$UnitNumber` | The number of the spawned unit. (Ex. Bravo-9 will return 9) |
 
 
