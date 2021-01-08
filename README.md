@@ -23,17 +23,25 @@ Solely for PlayerJoined, the event will play when a user joins with an id contai
 
 
 - Variables that work for all broadcasts include:
-	- $ScpsLeft | The number of alive Scps
-	- $MtfLeft | The number of alive Mtf
-	- $SciLeft | The number of alive scientists
-	- $CdpLeft | The number of alive ClassD
-	- $ChiLeft | The number of alive Chaos Insurgents
-	- $HumansLeft | The number of alive players that are not spectators, tutorials, or Scps
-	- $TotalPlayers | The number of players connected to the server
-	- $ScpSubjects | Returns as 'ScpSubject' if there is only one alive Scp, otherwise returns as 'ScpSubjects'
-	- $NtfScpSubjects | Returns the respective cassie pattern depending on how many Scps are alive (Ex. Returns as NOSCPSLEFT if there are no alive Scps)
+| Variable | Description |
+|:------------------------:|:------------------------------------------:|
+| `$ScpsLeft` | The number of alive Scps |
+| `$MtfLeft` | The number of alive Mtf |
+| `$SciLeft` | The number of alive scientists |
+| `$CdpLeft` | The number of alive ClassD |
+| `$ChiLeft` | The number of alive Chaos Insurgents |
+| `$HumansLeft` | The number of alive players that are not spectators, tutorials, or Scps |
+| `$TotalPlayers` | The number of players connected to the server |
+| `$ScpSubjects` | Returns as 'ScpSubject' if there is only one alive Scp, otherwise returns as 'ScpSubjects' |
+| `$NtfScpSubjects` | Returns the respective cassie pattern depending on how many Scps are alive (Ex. Returns as NOSCPSLEFT if there are no alive Scps) |
 
-- Variables for 'NtfSpawn' under the Message variable include: $UnitName, $UnitNumber
+
+- Variables for 'NtfSpawn' under the Message variable include:
+| Variable | Description |
+|:------------------------:|:------------------------------------------:|
+| `$UnitName` | The nato representation of the mtf squad. (Ex. Bravo-9 will return nato_b)
+| `$UnitNumber` | The number of the spawned unit. (Ex. Bravo-9 will return 9) |
+
 
 ## Commands
 ### Note you can use v/p instead of view/play

@@ -17,7 +17,7 @@ namespace CustomAnnouncements.Handlers
             ev.IsAllowed = false;
             var overrideMessage = _customAnnouncements.Config.MtfSpawn.Message.ReplaceAfterToken('$', new[]
             {
-                new Tuple<string, object>("UnitName", ev.UnitName),
+                new Tuple<string, object>("UnitName", "nato_" + ev.UnitName),
                 new Tuple<string, object>("UnitNumber", ev.UnitNumber)
             });
 
