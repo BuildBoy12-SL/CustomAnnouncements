@@ -26,7 +26,7 @@ namespace CustomAnnouncements.Commands.SubCommands
                 return false;
 
             Cassie.Message($"MtfUnit epsilon 11 designated nato_{unitDesignation} {unitNumber} " +
-                           $"HasEntered AllRemaining {(scpsRemaining == 0 ? "" : $"AwaitingRecontainment {scpsRemaining} {(scpsRemaining == 1 ? "scpsubject" : "scpsubjects")}")}");
+                           $"HasEntered AllRemaining {(scpsRemaining == 0 ? "NoScpsLeft" : $"AwaitingRecontainment {scpsRemaining} {(scpsRemaining == 1 ? "scpsubject" : "scpsubjects")}")}");
             response = "Playing announcement.";
             return true;
         }
