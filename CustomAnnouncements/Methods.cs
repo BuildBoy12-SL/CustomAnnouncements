@@ -26,10 +26,11 @@ namespace CustomAnnouncements
 
         private static string GetVariableMessage(string str)
         {
+            var scpCount = Player.Get(Team.SCP).Count();
             return str.ReplaceAfterToken('$',
                 new[]
                 {
-                    new Tuple<string, object>("ScpsLeft", Player.Get(Team.SCP).Count()),
+                    new Tuple<string, object>("ScpsLeft", scpCount),
                     new Tuple<string, object>("MtfLeft", Player.Get(Team.MTF).Count()),
                     new Tuple<string, object>("SciLeft", Player.Get(Team.RSC).Count()),
                     new Tuple<string, object>("CdpLeft", Player.Get(Team.CDP).Count()),
@@ -37,7 +38,11 @@ namespace CustomAnnouncements
                     new Tuple<string, object>("HumansLeft",
                         Player.List.Count(player =>
                             player.Team != Team.RIP && player.Team != Team.SCP && player.Team != Team.TUT)),
-                    new Tuple<string, object>("TotalPlayers", Player.List.Count())
+                    new Tuple<string, object>("TotalPlayers", Player.List.Count()),
+                    new Tuple<string, object>("ScpSubjects",
+                        scpCount == 1 ? "ScpSubject" : "ScpSubjects"),
+                    new Tuple<string, object>("NtfScpSubjects",
+                        $"{(scpCount == 0 ? "NoScpsLeft" : $"AwaitingRecontainment {scpCount} {(scpCount == 1 ? "scpsubject" : "scpsubjects")}")}"),
                 });
         }
 

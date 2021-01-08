@@ -22,11 +22,15 @@ namespace CustomAnnouncements.Handlers
 
             string str = ev.LeadingTeam switch
             {
-                LeadingTeam.Anomalies => _customAnnouncements.Config.RoundEnd.ScpMessage,
-                LeadingTeam.FacilityForces => _customAnnouncements.Config.RoundEnd.MtfMessage,
-                LeadingTeam.ChaosInsurgency => _customAnnouncements.Config.RoundEnd.ChiMessage,
-                LeadingTeam.Draw => _customAnnouncements.Config.RoundEnd.DrawMessage,
-                _ => null
+                LeadingTeam.FacilityForces when !string.IsNullOrEmpty(_customAnnouncements.Config.RoundEnd.MtfMessage)
+                    => _customAnnouncements.Config.RoundEnd.MtfMessage,
+                LeadingTeam.ChaosInsurgency when !string.IsNullOrEmpty(_customAnnouncements.Config.RoundEnd.ChiMessage)
+                    => _customAnnouncements.Config.RoundEnd.ChiMessage,
+                LeadingTeam.Anomalies when !string.IsNullOrEmpty(_customAnnouncements.Config.RoundEnd.ScpMessage) =>
+                    _customAnnouncements.Config.RoundEnd.ScpMessage,
+                LeadingTeam.Draw when !string.IsNullOrEmpty(_customAnnouncements.Config.RoundEnd.DrawMessage) =>
+                    _customAnnouncements.Config.RoundEnd.DrawMessage,
+                _ => _customAnnouncements.Config.RoundEnd.Message
             };
 
             Timing.RunCoroutine(Methods.PlayAnnouncement(_customAnnouncements.Config.RoundEnd, str));

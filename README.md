@@ -22,9 +22,18 @@ Solely for PlayerJoined, the event will play when a user joins with an id contai
 | `user_ids` | List\<string\> | Announcement that will be played when the round starts. |
 
 
-- Variables for 'ScpTermination' under the Message variable include: $TerminationCause, $TerminatorRole, $NtfUnit
-	- $NtfUnit returns as "Unknown" if the killer was not an NTF
-- Variables for 'NtfSpawn' under the Message variable include: $ScpsLeft, $UnitName, $UnitNumber
+- Variables that work for all broadcasts include:
+	- $ScpsLeft | The number of alive Scps
+	- $MtfLeft | The number of alive Mtf
+	- $SciLeft | The number of alive scientists
+	- $CdpLeft | The number of alive ClassD
+	- $ChiLeft | The number of alive Chaos Insurgents
+	- $HumansLeft | The number of alive players that are not spectators, tutorials, or Scps
+	- $TotalPlayers | The number of players connected to the server
+	- $ScpSubjects | Returns as 'ScpSubject' if there is only one alive Scp, otherwise returns as 'ScpSubjects'
+	- $NtfScpSubjects | Returns the respective cassie pattern depending on how many Scps are alive (Ex. Returns as NOSCPSLEFT if there are no alive Scps)
+
+- Variables for 'NtfSpawn' under the Message variable include: $UnitName, $UnitNumber
 
 ## Commands
 ### Note you can use v/p instead of view/play
@@ -47,10 +56,8 @@ Solely for PlayerJoined, the event will play when a user joins with an id contai
 
 - st (view/play): Plays configured ScpTermination announcement
 
+- fscp (mtf letter) (mtf number) (scps left): Plays mtf annoucement
 
-#### Coming Soon
-- mtfa (scps left) (mtf number) (mtf letter): Plays mtf annoucement
-
-- scpa (scp number) (death type): Plays scp death announcement
-    - Use tesla, dclass, science, mtf, or chaos for `death type`
-    - You can also use t, d, s, m, or c respectively
+- fmtf (scp number) (death type): Plays scp death announcement
+    - Use tesla, dclass, science, mtf, chaos, or decont for `death type`
+    - You can also use t, d, s, m, c, or decont respectively
