@@ -2,47 +2,30 @@ namespace CustomAnnouncements.Commands.SubCommands
 {
     using CommandSystem;
     using Exiled.Permissions.Extensions;
-    using MEC;
     using System;
-    using static CustomAnnouncements;
 
     public class RoundEnd : ICommand
     {
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (!(sender as CommandSender).CheckPermission("ca.re"))
+            if (!sender.CheckPermission("ca.re"))
             {
                 response = "Insufficient permission. Required: ca.re";
                 return false;
             }
 
-            if (Instance.Config.RoundEnd.IsNullOrEmpty())
+            if (CustomAnnouncements.Singleton.Config.RoundEnd.IsNullOrEmpty())
             {
                 response = "The RoundEnd announcement is not set in the config.";
                 return true;
             }
 
-            if (arguments.Count != 1)
-            {
-                response = "Syntax: ca re <v/p>";
-                return false;
-            }
+            if (arguments.Count == 1)
+                return Methods.ViewOrPlay(CustomAnnouncements.Singleton.Config.RoundEnd, "re", arguments.At(0),
+                    out response);
 
-            switch (arguments.At(0))
-            {
-                case "p":
-                case "play":
-                    response = "Playing RoundEnd announcement.";
-                    Timing.RunCoroutine(Methods.PlayAnnouncement(Instance.Config.RoundEnd));
-                    return true;
-                case "v":
-                case "view":
-                    response = Instance.Config.RoundEnd.Message;
-                    return true;
-                default:
-                    response = "Syntax: ca re (v/p)";
-                    return false;
-            }
+            response = "Syntax: ca re <v/p>";
+            return false;
         }
 
         public string Command => "roundend";

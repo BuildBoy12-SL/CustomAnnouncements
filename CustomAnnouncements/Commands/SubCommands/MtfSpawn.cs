@@ -2,47 +2,30 @@ namespace CustomAnnouncements.Commands.SubCommands
 {
     using CommandSystem;
     using Exiled.Permissions.Extensions;
-    using MEC;
     using System;
-    using static CustomAnnouncements;
 
     public class MtfSpawn : ICommand
     {
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (!(sender as CommandSender).CheckPermission("ca.ms"))
+            if (!sender.CheckPermission("ca.ms"))
             {
                 response = "Insufficient permission. Required: ca.ms";
                 return false;
             }
 
-            if (Instance.Config.MtfSpawn.IsNullOrEmpty())
+            if (CustomAnnouncements.Singleton.Config.MtfSpawn.IsNullOrEmpty())
             {
                 response = "The MtfSpawn announcement is not set in the config.";
                 return true;
             }
 
-            if (arguments.Count != 1)
-            {
-                response = "Syntax: ca ms <v/p>";
-                return false;
-            }
+            if (arguments.Count == 1)
+                return Methods.ViewOrPlay(CustomAnnouncements.Singleton.Config.MtfSpawn, "ms", arguments.At(0),
+                    out response);
 
-            switch (arguments.At(0))
-            {
-                case "p":
-                case "play":
-                    response = "Playing MtfSpawn announcement.";
-                    Timing.RunCoroutine(Methods.PlayAnnouncement(Instance.Config.MtfSpawn));
-                    return true;
-                case "v":
-                case "view":
-                    response = Instance.Config.MtfSpawn.Message;
-                    return true;
-                default:
-                    response = "Syntax: ca ms (v/p)";
-                    return false;
-            }
+            response = "Syntax: ca ms <v/p>";
+            return false;
         }
 
         public string Command => "mtfspawn";

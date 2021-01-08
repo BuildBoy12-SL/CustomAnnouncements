@@ -2,23 +2,62 @@ namespace CustomAnnouncements
 {
     using Exiled.API.Features;
     using MEC;
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class Methods
     {
         public static IEnumerator<float> PlayAnnouncement(IAnnouncement announcement, string overrideMessage = null)
         {
+            if (announcement.IsNullOrEmpty())
+                yield break;
+
             if (!string.IsNullOrEmpty(overrideMessage))
                 announcement.Message = overrideMessage;
 
-            if (announcement.Delay > 0f)
-                yield return Timing.WaitForSeconds(announcement.Delay);
-
+            string message = GetVariableMessage(announcement.Message);
             if (announcement.IsGlitchy)
-                NineTailedFoxAnnouncer.singleton.ServerOnlyAddGlitchyPhrase(announcement.Message,
+                Cassie.DelayedGlitchyMessage(message, announcement.Delay,
                     announcement.GlitchChance * 0.01f, announcement.JamChance * 0.01f);
             else
-                Cassie.Message(announcement.Message, isNoisy: announcement.IsNoisy);
+                Cassie.DelayedMessage(message, announcement.Delay, isNoisy: announcement.IsNoisy);
+        }
+
+        private static string GetVariableMessage(string str)
+        {
+            return str.ReplaceAfterToken('$',
+                new[]
+                {
+                    new Tuple<string, object>("ScpsLeft", Player.Get(Team.SCP).Count()),
+                    new Tuple<string, object>("MtfLeft", Player.Get(Team.MTF).Count()),
+                    new Tuple<string, object>("SciLeft", Player.Get(Team.RSC).Count()),
+                    new Tuple<string, object>("CdpLeft", Player.Get(Team.CDP).Count()),
+                    new Tuple<string, object>("ChiLeft", Player.Get(Team.CHI).Count()),
+                    new Tuple<string, object>("HumansLeft",
+                        Player.List.Count(player =>
+                            player.Team != Team.RIP && player.Team != Team.SCP && player.Team != Team.TUT)),
+                    new Tuple<string, object>("TotalPlayers", Player.List.Count())
+                });
+        }
+
+        public static bool ViewOrPlay(IAnnouncement announcement, string command, string argument, out string response)
+        {
+            switch (argument)
+            {
+                case "p":
+                case "play":
+                    response = "Playing announcement.";
+                    Timing.RunCoroutine(PlayAnnouncement(announcement));
+                    return true;
+                case "v":
+                case "view":
+                    response = announcement.Message;
+                    return true;
+                default:
+                    response = $"Syntax: ca {command} (v/p)";
+                    return false;
+            }
         }
     }
 }

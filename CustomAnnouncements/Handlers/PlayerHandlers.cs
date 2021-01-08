@@ -3,23 +3,22 @@ namespace CustomAnnouncements.Handlers
     using Exiled.Events.EventArgs;
     using MEC;
     using System.Linq;
-    using static CustomAnnouncements;
 
     public class PlayerHandlers
     {
+        public PlayerHandlers(CustomAnnouncements customAnnouncements) => _customAnnouncements = customAnnouncements;
+        private readonly CustomAnnouncements _customAnnouncements;
+
         public void OnPlayerJoin(JoinedEventArgs ev)
         {
-            if (Instance.Config.PlayerJoined.UserIds == null)
+            if (_customAnnouncements.Config.PlayerJoined.UserIds == null)
                 return;
 
-            if (!Instance.Config.PlayerJoined.UserIds.Any())
+            if (!_customAnnouncements.Config.PlayerJoined.UserIds.Any() ||
+                !_customAnnouncements.Config.PlayerJoined.UserIds.Contains(ev.Player.UserId))
                 return;
 
-            if (!Instance.Config.PlayerJoined.UserIds.Contains(ev.Player.UserId) ||
-                Instance.Config.PlayerJoined.IsNullOrEmpty())
-                return;
-
-            Timing.RunCoroutine(Methods.PlayAnnouncement(Instance.Config.PlayerJoined));
+            Timing.RunCoroutine(Methods.PlayAnnouncement(_customAnnouncements.Config.PlayerJoined));
         }
 
         public void OnEscaping(EscapingEventArgs ev)
@@ -27,12 +26,17 @@ namespace CustomAnnouncements.Handlers
             switch (ev.Player.Role)
             {
                 case RoleType.ClassD:
-                    if (!Instance.Config.EscapeClassD.IsNullOrEmpty())
-                        Timing.RunCoroutine(Methods.PlayAnnouncement(Instance.Config.EscapeClassD));
+                    if (_customAnnouncements.Config.EscapeClassD.OnlyPlayFirst && RoundSummary.escaped_ds != 0)
+                        return;
+
+                    Timing.RunCoroutine(Methods.PlayAnnouncement(_customAnnouncements.Config.EscapeClassD));
                     break;
                 case RoleType.Scientist:
-                    if (!Instance.Config.EscapeScientist.IsNullOrEmpty())
-                        Timing.RunCoroutine(Methods.PlayAnnouncement(Instance.Config.EscapeScientist));
+                    if (_customAnnouncements.Config.EscapeScientist.OnlyPlayFirst &&
+                        RoundSummary.escaped_scientists != 0)
+                        return;
+
+                    Timing.RunCoroutine(Methods.PlayAnnouncement(_customAnnouncements.Config.EscapeScientist));
                     break;
             }
         }

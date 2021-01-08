@@ -7,19 +7,12 @@
     {
         public static bool IsNullOrEmpty(this IAnnouncement announcement) =>
             string.IsNullOrEmpty(announcement.Message);
-
-        /// <summary>
-        /// Optimized method that replaces a <see cref="string"/> based on an <see cref="Tuple[]"/>
-        /// </summary>
-        /// <param name="source">The string to use as source</param>
-        /// <param name="token">The starting token</param>
-        /// <param name="valuePairs">The value pairs (tuples) to use as "key -> value"</param>
-        /// <returns>The string after replacement</returns>
+        
         public static string ReplaceAfterToken(this string source, char token, Tuple<string, object>[] valuePairs)
         {
             if (valuePairs == null)
             {
-                throw new ArgumentNullException("valuePairs");
+                throw new ArgumentNullException(nameof(valuePairs));
             }
 
             StringBuilder builder = new StringBuilder(Convert.ToInt32(Math.Ceiling(source.Length * 1.5f)));

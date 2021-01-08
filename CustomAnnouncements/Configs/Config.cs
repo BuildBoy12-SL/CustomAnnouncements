@@ -1,4 +1,4 @@
-namespace CustomAnnouncements
+namespace CustomAnnouncements.Configs
 {
     using Exiled.API.Interfaces;
     using Configs.SubConfigs;
@@ -16,8 +16,6 @@ namespace CustomAnnouncements
         public MtfSpawn MtfSpawn { get; private set; } = new MtfSpawn();
         public PlayerJoined PlayerJoined { get; private set; } = new PlayerJoined();
         public RoundEnd RoundEnd { get; private set; } = new RoundEnd();
-
         public RoundStart RoundStart { get; private set; } = new RoundStart();
-        // public ScpTerminated ScpTerminated { get; private set; } = new ScpTerminated();
     }
 }

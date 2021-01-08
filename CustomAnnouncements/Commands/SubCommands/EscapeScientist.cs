@@ -2,47 +2,30 @@ namespace CustomAnnouncements.Commands.SubCommands
 {
     using CommandSystem;
     using Exiled.Permissions.Extensions;
-    using MEC;
     using System;
-    using static CustomAnnouncements;
 
     public class EscapeScientist : ICommand
     {
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (!(sender as CommandSender).CheckPermission("ca.es"))
+            if (!sender.CheckPermission("ca.es"))
             {
                 response = "Insufficient permission. Required: ca.es";
                 return false;
             }
 
-            if (Instance.Config.EscapeScientist.IsNullOrEmpty())
+            if (CustomAnnouncements.Singleton.Config.EscapeScientist.IsNullOrEmpty())
             {
                 response = "The EscapeScientist announcement is not set in the config.";
                 return true;
             }
 
-            if (arguments.Count != 1)
-            {
-                response = "Syntax: ca es <v/p>";
-                return false;
-            }
+            if (arguments.Count == 1)
+                return Methods.ViewOrPlay(CustomAnnouncements.Singleton.Config.RoundStart, "es", arguments.At(0),
+                    out response);
 
-            switch (arguments.At(0))
-            {
-                case "p":
-                case "play":
-                    response = "Playing EscapeScientist announcement.";
-                    Timing.RunCoroutine(Methods.PlayAnnouncement(Instance.Config.EscapeScientist));
-                    return true;
-                case "v":
-                case "view":
-                    response = Instance.Config.EscapeScientist.Message;
-                    return true;
-                default:
-                    response = "Syntax: ca es (v/p)";
-                    return false;
-            }
+            response = "Syntax: ca es <v/p>";
+            return false;
         }
 
         public string Command => "escapescientist";

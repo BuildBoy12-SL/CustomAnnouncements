@@ -8,5 +8,6 @@ namespace CustomAnnouncements.Configs.SubConfigs
         public float GlitchChance { get; set; }
         public float JamChance { get; set; }
         public float Delay { get; set; }
+        public bool OnlyPlayFirst { get; set; }
     }
 }

@@ -1,35 +1,40 @@
 namespace CustomAnnouncements.Handlers
 {
+    using Exiled.API.Enums;
     using Exiled.Events.EventArgs;
     using MEC;
-    using static CustomAnnouncements;
 
     public class ServerHandlers
     {
+        public ServerHandlers(CustomAnnouncements customAnnouncements) => _customAnnouncements = customAnnouncements;
+        private readonly CustomAnnouncements _customAnnouncements;
+
         public void OnRespawningTeam(RespawningTeamEventArgs ev)
         {
-            if (ev.Players.Count <= 0)
-                return;
-
-            if (!Instance.Config.ChaosSpawn.IsNullOrEmpty() &&
-                ev.NextKnownTeam == Respawning.SpawnableTeamType.ChaosInsurgency)
-                Timing.RunCoroutine(Methods.PlayAnnouncement(Instance.Config.ChaosSpawn));
+            if (ev.NextKnownTeam == Respawning.SpawnableTeamType.ChaosInsurgency && ev.Players.Count > 0)
+                Timing.RunCoroutine(Methods.PlayAnnouncement(_customAnnouncements.Config.ChaosSpawn));
         }
 
-        public void OnRoundEnd(RoundEndedEventArgs _)
+        public void OnRoundEnd(EndingRoundEventArgs ev)
         {
-            if (Instance.Config.RoundEnd.IsNullOrEmpty())
+            if (!ev.IsRoundEnded)
                 return;
 
-            Timing.RunCoroutine(Methods.PlayAnnouncement(Instance.Config.RoundEnd));
+            string str = ev.LeadingTeam switch
+            {
+                LeadingTeam.Anomalies => _customAnnouncements.Config.RoundEnd.ScpMessage,
+                LeadingTeam.FacilityForces => _customAnnouncements.Config.RoundEnd.MtfMessage,
+                LeadingTeam.ChaosInsurgency => _customAnnouncements.Config.RoundEnd.ChiMessage,
+                LeadingTeam.Draw => _customAnnouncements.Config.RoundEnd.DrawMessage,
+                _ => null
+            };
+
+            Timing.RunCoroutine(Methods.PlayAnnouncement(_customAnnouncements.Config.RoundEnd, str));
         }
 
         public void OnRoundStart()
         {
-            if (Instance.Config.RoundStart.IsNullOrEmpty())
-                return;
-
-            Timing.RunCoroutine(Methods.PlayAnnouncement(Instance.Config.RoundStart));
+            Timing.RunCoroutine(Methods.PlayAnnouncement(_customAnnouncements.Config.RoundStart));
         }
     }
 }
