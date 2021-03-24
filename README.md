@@ -1,6 +1,6 @@
 # Custom Announcements
 - Requires [EXILED](https://github.com/galaxy119/EXILED/).
-- All C.A.S.S.I.E. acceptable words can be found [here](https://pastebin.com/rpMuRYNn).
+- All C.A.S.S.I.E. acceptable words can be found [here](https://steamcommunity.com/sharedfiles/filedetails/?id=1577299753).
 
 ## Configs
 - Leave an announcements 'Message' blank if you do not want it to run.
