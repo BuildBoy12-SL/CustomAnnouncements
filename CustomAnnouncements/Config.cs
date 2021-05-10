@@ -7,7 +7,7 @@
 
 namespace CustomAnnouncements
 {
-    using CustomAnnouncements.Configs.SubConfigs;
+    using CustomAnnouncements.Configs;
     using Exiled.API.Interfaces;
 
     /// <inheritdoc cref="IConfig"/>

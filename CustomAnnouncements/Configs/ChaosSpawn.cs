@@ -5,7 +5,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace CustomAnnouncements.Configs.SubConfigs
+namespace CustomAnnouncements.Configs
 {
     using System.ComponentModel;
 

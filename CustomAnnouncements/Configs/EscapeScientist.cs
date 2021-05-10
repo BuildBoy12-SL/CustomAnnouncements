@@ -1,17 +1,14 @@
 // -----------------------------------------------------------------------
-// <copyright file="PlayerJoined.cs" company="Build">
+// <copyright file="EscapeScientist.cs" company="Build">
 // Copyright (c) Build. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace CustomAnnouncements.Configs.SubConfigs
+namespace CustomAnnouncements.Configs
 {
-    using System.Collections.Generic;
-    using System.ComponentModel;
-
     /// <inheritdoc cref="IAnnouncement"/>
-    public class PlayerJoined : IAnnouncement
+    public class EscapeScientist : IAnnouncement
     {
         /// <inheritdoc />
         public string Message { get; set; }
@@ -32,13 +29,8 @@ namespace CustomAnnouncements.Configs.SubConfigs
         public float Delay { get; set; }
 
         /// <summary>
-        /// Gets or sets the collection of user ids which will trigger this announcement.
+        /// Gets or sets a value indicating whether the announcement should only be played on the first escape.
         /// </summary>
-        [Description("The collection of user ids which will trigger this announcement.")]
-        public List<string> UserIds { get; set; } = new List<string>
-        {
-            "mysteamid@steam",
-            "mydiscordid@discord",
-        };
+        public bool OnlyPlayFirst { get; set; }
     }
 }

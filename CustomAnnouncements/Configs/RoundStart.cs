@@ -1,14 +1,14 @@
 // -----------------------------------------------------------------------
-// <copyright file="MtfSpawn.cs" company="Build">
+// <copyright file="RoundStart.cs" company="Build">
 // Copyright (c) Build. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace CustomAnnouncements.Configs.SubConfigs
+namespace CustomAnnouncements.Configs
 {
     /// <inheritdoc cref="IAnnouncement"/>
-    public class MtfSpawn : IAnnouncement
+    public class RoundStart : IAnnouncement
     {
         /// <inheritdoc />
         public string Message { get; set; }
