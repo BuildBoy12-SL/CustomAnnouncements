@@ -1,13 +1,33 @@
+// -----------------------------------------------------------------------
+// <copyright file="FakeScp.cs" company="Build">
+// Copyright (c) Build. All rights reserved.
+// Licensed under the CC BY-SA 3.0 license.
+// </copyright>
+// -----------------------------------------------------------------------
+
 namespace CustomAnnouncements.Commands.SubCommands
 {
+    using System;
+    using System.Linq;
     using CommandSystem;
     using Exiled.API.Features;
     using Exiled.Permissions.Extensions;
-    using System;
-    using System.Linq;
 
+    /// <summary>
+    /// A command to play a fake SCP death.
+    /// </summary>
     public class FakeScp : ICommand
     {
+        /// <inheritdoc />
+        public string Command { get; } = "fakescp";
+
+        /// <inheritdoc />
+        public string[] Aliases { get; } = { "scpa", "fscp" };
+
+        /// <inheritdoc />
+        public string Description { get; } = "Fakes a Scp death announcement.";
+
+        /// <inheritdoc />
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (!sender.CheckPermission("ca.fscp"))
@@ -65,9 +85,7 @@ namespace CustomAnnouncements.Commands.SubCommands
                         out Respawning.NamingRules.UnitNamingRule unitNamingRule))
                         deathCause = "Unknown";
                     else
-                        deathCause = "CONTAINEDSUCCESSFULLY CONTAINMENTUNIT " +
-                                     unitNamingRule.GetCassieUnitName(dummy.ReferenceHub.characterClassManager
-                                         .CurUnitName);
+                        deathCause = "CONTAINEDSUCCESSFULLY CONTAINMENTUNIT " + unitNamingRule.GetCassieUnitName(dummy.UnitName);
                     break;
                 case "decont":
                     deathCause = "Lost in Decontamination Sequence";
@@ -81,9 +99,5 @@ namespace CustomAnnouncements.Commands.SubCommands
             response = "Playing announcement.";
             return true;
         }
-
-        public string Command => "fakescp";
-        public string[] Aliases => new[] {"scpa", "fscp"};
-        public string Description => "Fakes a Scp death announcement.";
     }
 }

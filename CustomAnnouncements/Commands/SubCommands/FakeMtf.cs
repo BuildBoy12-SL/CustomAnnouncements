@@ -1,13 +1,32 @@
-using Exiled.API.Features;
+// -----------------------------------------------------------------------
+// <copyright file="FakeMtf.cs" company="Build">
+// Copyright (c) Build. All rights reserved.
+// Licensed under the CC BY-SA 3.0 license.
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace CustomAnnouncements.Commands.SubCommands
 {
-    using CommandSystem;
-    using Exiled.Permissions.Extensions;
     using System;
+    using CommandSystem;
+    using Exiled.API.Features;
+    using Exiled.Permissions.Extensions;
 
+    /// <summary>
+    /// A command to play a faked MTF spawn.
+    /// </summary>
     public class FakeMtf : ICommand
     {
+        /// <inheritdoc />
+        public string Command { get; } = "fakemtf";
+
+        /// <inheritdoc />
+        public string[] Aliases { get; } = { "mtfa", "fmtf" };
+
+        /// <inheritdoc />
+        public string Description { get; } = "Fakes a Mtf spawn announcement.";
+
+        /// <inheritdoc />
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (!sender.CheckPermission("ca.fmtf"))
@@ -17,7 +36,7 @@ namespace CustomAnnouncements.Commands.SubCommands
             }
 
             response = "Syntax: ca mtfa (mtf letter) (mtf number) (scps left)";
-            if (arguments.Count != 3)
+            if (arguments.Count < 3)
                 return false;
 
             if (!char.TryParse(arguments.At(0), out char unitDesignation) ||
@@ -30,9 +49,5 @@ namespace CustomAnnouncements.Commands.SubCommands
             response = "Playing announcement.";
             return true;
         }
-
-        public string Command => "fakemtf";
-        public string[] Aliases => new[] {"mtfa", "fmtf"};
-        public string Description => "Fakes a Mtf spawn announcement.";
     }
 }

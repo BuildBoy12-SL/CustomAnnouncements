@@ -1,42 +1,56 @@
+// -----------------------------------------------------------------------
+// <copyright file="PlayerHandlers.cs" company="Build">
+// Copyright (c) Build. All rights reserved.
+// Licensed under the CC BY-SA 3.0 license.
+// </copyright>
+// -----------------------------------------------------------------------
+
 namespace CustomAnnouncements.Handlers
 {
     using Exiled.Events.EventArgs;
-    using MEC;
-    using System.Linq;
 
+    /// <summary>
+    /// Contains methods which subscribe to events in <see cref="Exiled.Events.Handlers.Player"/>.
+    /// </summary>
     public class PlayerHandlers
     {
-        public PlayerHandlers(CustomAnnouncements customAnnouncements) => _customAnnouncements = customAnnouncements;
-        private readonly CustomAnnouncements _customAnnouncements;
+        private readonly Plugin plugin;
 
-        public void OnPlayerJoin(JoinedEventArgs ev)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlayerHandlers"/> class.
+        /// </summary>
+        /// <param name="plugin">An instance of the <see cref="Plugin"/> class.</param>
+        public PlayerHandlers(Plugin plugin) => this.plugin = plugin;
+
+        /// <inheritdoc cref="Exiled.Events.Handlers.Player.OnVerified(VerifiedEventArgs)"/>
+        public void OnVerified(VerifiedEventArgs ev)
         {
-            if (_customAnnouncements.Config.PlayerJoined.UserIds == null)
+            if (plugin.Config.PlayerJoined.UserIds == null)
                 return;
 
-            if (!_customAnnouncements.Config.PlayerJoined.UserIds.Any() ||
-                !_customAnnouncements.Config.PlayerJoined.UserIds.Contains(ev.Player.UserId))
+            if (!plugin.Config.PlayerJoined.UserIds.Contains(ev.Player.UserId))
                 return;
 
-            Timing.RunCoroutine(Methods.PlayAnnouncement(_customAnnouncements.Config.PlayerJoined));
+            Methods.PlayAnnouncement(plugin.Config.PlayerJoined);
         }
 
+        /// <inheritdoc cref="Exiled.Events.Handlers.Player.OnEscaping(EscapingEventArgs)"/>
         public void OnEscaping(EscapingEventArgs ev)
         {
             switch (ev.Player.Role)
             {
                 case RoleType.ClassD:
-                    if (_customAnnouncements.Config.EscapeClassD.OnlyPlayFirst && RoundSummary.escaped_ds != 0)
+                    if (plugin.Config.EscapeClassD.OnlyPlayFirst && RoundSummary.escaped_ds != 0)
                         return;
 
-                    Timing.RunCoroutine(Methods.PlayAnnouncement(_customAnnouncements.Config.EscapeClassD));
+                    Methods.PlayAnnouncement(plugin.Config.EscapeClassD);
                     break;
                 case RoleType.Scientist:
-                    if (_customAnnouncements.Config.EscapeScientist.OnlyPlayFirst &&
+                    if (plugin.Config.EscapeScientist.OnlyPlayFirst &&
                         RoundSummary.escaped_scientists != 0)
                         return;
 
-                    Timing.RunCoroutine(Methods.PlayAnnouncement(_customAnnouncements.Config.EscapeScientist));
+                    Methods.PlayAnnouncement(plugin.Config.EscapeScientist);
                     break;
             }
         }

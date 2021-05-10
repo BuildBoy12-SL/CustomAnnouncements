@@ -1,34 +1,32 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net472</TargetFramework>
-        <LangVersion>8</LangVersion>
+      <TargetFramework>net472</TargetFramework>
+      <AssemblyName>CustomAnnouncements</AssemblyName>
+
+      <Authors>Build</Authors>
+      <Version>1.1.4</Version>
+      <LangVersion>8</LangVersion>
+
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+      <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+      <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+      <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="EXILED" Version="2.1.25" />
-      <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net472" Version="1.0.0">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
+      <PackageReference Include="EXILED" Version="2.10.0-beta" />
+      <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\SubclassItems-2.0\Compile\bin\Release\net472\Assembly-CSharp-Publicized.dll</HintPath>
-      </Reference>
-      <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\CreativeToolbox\CreativeToolbox\bin\Release\net472\Assembly-CSharp-firstpass.dll</HintPath>
-      </Reference>
-      <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\CreativeToolbox\CreativeToolbox\bin\Release\net472\CommandSystem.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Mirror, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\CreativeToolbox\CreativeToolbox\bin\Release\net472\Mirror.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\CreativeToolbox\CreativeToolbox\bin\Release\net472\UnityEngine.CoreModule.dll</HintPath>
-      </Reference>
+      <Reference Include="Assembly-CSharp" HintPath="$(EXILED_References)\Assembly-CSharp-Publicized.dll" Private="false" />
+      <Reference Include="Assembly-CSharp-firstpass" HintPath="$(EXILED_References)\Assembly-CSharp-firstpass.dll" Private="false" />
+      <Reference Include="CommandSystem.Core" HintPath="$(EXILED_References)\CommandSystem.Core.dll" Private="false" />
+      <Reference Include="Mirror" HintPath="$(EXILED_References)\Mirror.dll" Private="false" />
+      <Reference Include="NorthwoodLib" HintPath="$(EXILED_References)\NorthwoodLib.dll" Private="false" />
+      <Reference Include="UnityEngine.CoreModule" HintPath="$(EXILED_References)\UnityEngine.CoreModule.dll" Private="false" />
     </ItemGroup>
 
 </Project>

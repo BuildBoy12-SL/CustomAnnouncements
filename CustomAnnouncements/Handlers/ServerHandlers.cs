@@ -1,44 +1,65 @@
+// -----------------------------------------------------------------------
+// <copyright file="ServerHandlers.cs" company="Build">
+// Copyright (c) Build. All rights reserved.
+// Licensed under the CC BY-SA 3.0 license.
+// </copyright>
+// -----------------------------------------------------------------------
+
 namespace CustomAnnouncements.Handlers
 {
     using Exiled.API.Enums;
     using Exiled.Events.EventArgs;
-    using MEC;
 
+    /// <summary>
+    /// Contains methods which subscribe to events in <see cref="Exiled.Events.Handlers.Server"/>.
+    /// </summary>
     public class ServerHandlers
     {
-        public ServerHandlers(CustomAnnouncements customAnnouncements) => _customAnnouncements = customAnnouncements;
-        private readonly CustomAnnouncements _customAnnouncements;
+        private readonly Plugin plugin;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ServerHandlers"/> class.
+        /// </summary>
+        /// <param name="plugin">An instance of the <see cref="Plugin"/> class.</param>
+        public ServerHandlers(Plugin plugin) => this.plugin = plugin;
+
+        /// <inheritdoc cref="Exiled.Events.Handlers.Server.OnRespawningTeam(RespawningTeamEventArgs)"/>
         public void OnRespawningTeam(RespawningTeamEventArgs ev)
         {
             if (ev.NextKnownTeam == Respawning.SpawnableTeamType.ChaosInsurgency && ev.Players.Count > 0)
-                Timing.RunCoroutine(Methods.PlayAnnouncement(_customAnnouncements.Config.ChaosSpawn));
+                Methods.PlayAnnouncement(plugin.Config.ChaosSpawn);
         }
 
-        public void OnRoundEnd(EndingRoundEventArgs ev)
+        /// <inheritdoc cref="Exiled.Events.Handlers.Server.OnRoundEnded(RoundEndedEventArgs)"/>
+        public void OnRoundEnded(RoundEndedEventArgs ev)
         {
-            if (!ev.IsRoundEnded)
-                return;
-
-            string str = ev.LeadingTeam switch
+            string announcement;
+            switch (ev.LeadingTeam)
             {
-                LeadingTeam.FacilityForces when !string.IsNullOrEmpty(_customAnnouncements.Config.RoundEnd.MtfMessage)
-                    => _customAnnouncements.Config.RoundEnd.MtfMessage,
-                LeadingTeam.ChaosInsurgency when !string.IsNullOrEmpty(_customAnnouncements.Config.RoundEnd.ChiMessage)
-                    => _customAnnouncements.Config.RoundEnd.ChiMessage,
-                LeadingTeam.Anomalies when !string.IsNullOrEmpty(_customAnnouncements.Config.RoundEnd.ScpMessage) =>
-                    _customAnnouncements.Config.RoundEnd.ScpMessage,
-                LeadingTeam.Draw when !string.IsNullOrEmpty(_customAnnouncements.Config.RoundEnd.DrawMessage) =>
-                    _customAnnouncements.Config.RoundEnd.DrawMessage,
-                _ => _customAnnouncements.Config.RoundEnd.Message
-            };
+                case LeadingTeam.FacilityForces when !string.IsNullOrEmpty(plugin.Config.RoundEnd.MtfMessage):
+                    announcement = plugin.Config.RoundEnd.MtfMessage;
+                    break;
+                case LeadingTeam.ChaosInsurgency when !string.IsNullOrEmpty(plugin.Config.RoundEnd.ChiMessage):
+                    announcement = plugin.Config.RoundEnd.ChiMessage;
+                    break;
+                case LeadingTeam.Anomalies when !string.IsNullOrEmpty(plugin.Config.RoundEnd.ScpMessage):
+                    announcement = plugin.Config.RoundEnd.ScpMessage;
+                    break;
+                case LeadingTeam.Draw when !string.IsNullOrEmpty(plugin.Config.RoundEnd.DrawMessage):
+                    announcement = plugin.Config.RoundEnd.DrawMessage;
+                    break;
+                default:
+                    announcement = plugin.Config.RoundEnd.Message;
+                    break;
+            }
 
-            Timing.RunCoroutine(Methods.PlayAnnouncement(_customAnnouncements.Config.RoundEnd, str));
+            Methods.PlayAnnouncement(plugin.Config.RoundEnd, announcement);
         }
 
-        public void OnRoundStart()
+        /// <inheritdoc cref="Exiled.Events.Handlers.Server.OnRoundStarted"/>
+        public void OnRoundStarted()
         {
-            Timing.RunCoroutine(Methods.PlayAnnouncement(_customAnnouncements.Config.RoundStart));
+            Methods.PlayAnnouncement(plugin.Config.RoundStart);
         }
     }
 }

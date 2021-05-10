@@ -1,27 +1,42 @@
+// -----------------------------------------------------------------------
+// <copyright file="MapHandlers.cs" company="Build">
+// Copyright (c) Build. All rights reserved.
+// Licensed under the CC BY-SA 3.0 license.
+// </copyright>
+// -----------------------------------------------------------------------
+
 namespace CustomAnnouncements.Handlers
 {
-    using Exiled.Events.EventArgs;
-    using MEC;
     using System;
+    using Exiled.Events.EventArgs;
 
+    /// <summary>
+    /// Contains methods which subscribe to events in <see cref="Exiled.Events.Handlers.Map"/>.
+    /// </summary>
     public class MapHandlers
     {
-        public MapHandlers(CustomAnnouncements customAnnouncements) => _customAnnouncements = customAnnouncements;
-        private readonly CustomAnnouncements _customAnnouncements;
+        private readonly Plugin plugin;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MapHandlers"/> class.
+        /// </summary>
+        /// <param name="plugin">An instance of the <see cref="Plugin"/> class.</param>
+        public MapHandlers(Plugin plugin) => this.plugin = plugin;
+
+        /// <inheritdoc cref="Exiled.Events.Handlers.Map.OnAnnouncingNtfEntrance(AnnouncingNtfEntranceEventArgs)"/>
         public void OnAnnouncingNtfEntrance(AnnouncingNtfEntranceEventArgs ev)
         {
-            if (_customAnnouncements.Config.MtfSpawn.IsNullOrEmpty())
+            if (plugin.Config.MtfSpawn.IsNullOrEmpty())
                 return;
 
             ev.IsAllowed = false;
-            var overrideMessage = _customAnnouncements.Config.MtfSpawn.Message.ReplaceAfterToken('$', new[]
+            var overrideMessage = plugin.Config.MtfSpawn.Message.ReplaceAfterToken('$', new[]
             {
                 new Tuple<string, object>("UnitName", "nato_" + ev.UnitName),
-                new Tuple<string, object>("UnitNumber", ev.UnitNumber)
+                new Tuple<string, object>("UnitNumber", ev.UnitNumber),
             });
 
-            Timing.RunCoroutine(Methods.PlayAnnouncement(_customAnnouncements.Config.MtfSpawn, overrideMessage));
+            Methods.PlayAnnouncement(plugin.Config.MtfSpawn, overrideMessage);
         }
     }
 }
