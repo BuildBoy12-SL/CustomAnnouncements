@@ -12,7 +12,7 @@ namespace CustomAnnouncements.Commands.SubCommands
     using Exiled.Permissions.Extensions;
 
     /// <summary>
-    /// A command to play the <see cref="Configs.SubConfigs.PlayerJoined"/> announcement.
+    /// A command to play the <see cref="Configs.PlayerJoined"/> announcement.
     /// </summary>
     public class PlayerJoined : ICommand
     {

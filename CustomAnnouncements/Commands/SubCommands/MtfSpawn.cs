@@ -12,7 +12,7 @@ namespace CustomAnnouncements.Commands.SubCommands
     using Exiled.Permissions.Extensions;
 
     /// <summary>
-    /// A command to play the <see cref="Configs.SubConfigs.MtfSpawn"/> announcement.
+    /// A command to play the <see cref="Configs.MtfSpawn"/> announcement.
     /// </summary>
     public class MtfSpawn : ICommand
     {

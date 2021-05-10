@@ -12,7 +12,7 @@ namespace CustomAnnouncements.Commands.SubCommands
     using Exiled.Permissions.Extensions;
 
     /// <summary>
-    /// A command to play the <see cref="Configs.SubConfigs.RoundEnd"/> announcement.
+    /// A command to play the <see cref="Configs.RoundEnd"/> announcement.
     /// </summary>
     public class RoundEnd : ICommand
     {

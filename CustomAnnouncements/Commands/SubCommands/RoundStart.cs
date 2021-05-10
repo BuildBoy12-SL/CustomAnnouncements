@@ -12,7 +12,7 @@ namespace CustomAnnouncements.Commands.SubCommands
     using Exiled.Permissions.Extensions;
 
     /// <summary>
-    /// A command to play the <see cref="Configs.SubConfigs.RoundStart"/> announcement.
+    /// A command to play the <see cref="Configs.RoundStart"/> announcement.
     /// </summary>
     public class RoundStart : ICommand
     {
