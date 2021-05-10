@@ -2,7 +2,7 @@
 <Project>
     <!-- StyleCop Analyzers configuration -->
     <PropertyGroup>
-        <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)\BuildLib.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)\CustomAnnouncements.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
