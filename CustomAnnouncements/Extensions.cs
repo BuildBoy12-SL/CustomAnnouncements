@@ -21,8 +21,7 @@ namespace CustomAnnouncements
         /// </summary>
         /// <param name="announcement">The announcement to check.</param>
         /// <returns>Whether the <see cref="IAnnouncement.Message"/> was null.</returns>
-        public static bool IsNullOrEmpty(this IAnnouncement announcement) =>
-            string.IsNullOrEmpty(announcement.Message);
+        public static bool IsNullOrEmpty(this IAnnouncement announcement) => string.IsNullOrEmpty(announcement.Message);
 
         /// <summary>
         /// Optimized method that replaces a <see cref="string"/> based on an <see cref="Tuple{T,T}"/>.
