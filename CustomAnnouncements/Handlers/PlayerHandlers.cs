@@ -46,8 +46,7 @@ namespace CustomAnnouncements.Handlers
                     Methods.PlayAnnouncement(plugin.Config.EscapeClassD);
                     break;
                 case RoleType.Scientist:
-                    if (plugin.Config.EscapeScientist.OnlyPlayFirst &&
-                        RoundSummary.escaped_scientists != 0)
+                    if (plugin.Config.EscapeScientist.OnlyPlayFirst && RoundSummary.escaped_scientists != 0)
                         return;
 
                     Methods.PlayAnnouncement(plugin.Config.EscapeScientist);

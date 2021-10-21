@@ -8,6 +8,7 @@
 namespace CustomAnnouncements.Handlers
 {
     using Exiled.API.Enums;
+    using Exiled.API.Features;
     using Exiled.Events.EventArgs;
 
     /// <summary>
@@ -33,26 +34,16 @@ namespace CustomAnnouncements.Handlers
         /// <inheritdoc cref="Exiled.Events.Handlers.Server.OnRoundEnded(RoundEndedEventArgs)"/>
         public void OnRoundEnded(RoundEndedEventArgs ev)
         {
-            string announcement;
-            switch (ev.LeadingTeam)
+            string announcement = ev.LeadingTeam switch
             {
-                case LeadingTeam.FacilityForces when !string.IsNullOrEmpty(plugin.Config.RoundEnd.MtfMessage):
-                    announcement = plugin.Config.RoundEnd.MtfMessage;
-                    break;
-                case LeadingTeam.ChaosInsurgency when !string.IsNullOrEmpty(plugin.Config.RoundEnd.ChiMessage):
-                    announcement = plugin.Config.RoundEnd.ChiMessage;
-                    break;
-                case LeadingTeam.Anomalies when !string.IsNullOrEmpty(plugin.Config.RoundEnd.ScpMessage):
-                    announcement = plugin.Config.RoundEnd.ScpMessage;
-                    break;
-                case LeadingTeam.Draw when !string.IsNullOrEmpty(plugin.Config.RoundEnd.DrawMessage):
-                    announcement = plugin.Config.RoundEnd.DrawMessage;
-                    break;
-                default:
-                    announcement = plugin.Config.RoundEnd.Message;
-                    break;
-            }
+                LeadingTeam.FacilityForces when !string.IsNullOrEmpty(plugin.Config.RoundEnd.MtfMessage) => plugin.Config.RoundEnd.MtfMessage,
+                LeadingTeam.ChaosInsurgency when !string.IsNullOrEmpty(plugin.Config.RoundEnd.ChiMessage) => plugin.Config.RoundEnd.ChiMessage,
+                LeadingTeam.Anomalies when !string.IsNullOrEmpty(plugin.Config.RoundEnd.ScpMessage) => plugin.Config.RoundEnd.ScpMessage,
+                LeadingTeam.Draw when !string.IsNullOrEmpty(plugin.Config.RoundEnd.DrawMessage) => plugin.Config.RoundEnd.DrawMessage,
+                _ => string.Empty,
+            };
 
+            Log.Warn(announcement);
             Methods.PlayAnnouncement(plugin.Config.RoundEnd, announcement);
         }
 

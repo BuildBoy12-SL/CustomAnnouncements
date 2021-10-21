@@ -23,13 +23,11 @@ namespace CustomAnnouncements
         /// <param name="overrideMessage">The message to override the <see cref="IAnnouncement.Message"/>. Ignored if null or empty.</param>
         public static void PlayAnnouncement(IAnnouncement announcement, string overrideMessage = null)
         {
-            if (announcement.IsNullOrEmpty())
-                return;
-
+            string message = announcement.Message;
             if (!string.IsNullOrEmpty(overrideMessage))
-                announcement.Message = overrideMessage;
+                message = overrideMessage;
 
-            string message = GetVariableMessage(announcement.Message);
+            message = GetVariableMessage(message);
             if (announcement.IsGlitchy)
                 Cassie.DelayedGlitchyMessage(message, announcement.Delay, announcement.GlitchChance * 0.01f, announcement.JamChance * 0.01f);
             else
