@@ -43,7 +43,6 @@ namespace CustomAnnouncements.Handlers
                 _ => string.Empty,
             };
 
-            Log.Warn(announcement);
             Methods.PlayAnnouncement(plugin.Config.RoundEnd, announcement);
         }
 
