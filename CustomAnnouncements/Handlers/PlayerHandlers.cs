@@ -40,13 +40,13 @@ namespace CustomAnnouncements.Handlers
             switch (ev.Player.Role)
             {
                 case RoleType.ClassD:
-                    if (plugin.Config.EscapeClassD.OnlyPlayFirst && RoundSummary.escaped_ds != 0)
+                    if (plugin.Config.EscapeClassD.OnlyPlayFirst && RoundSummary.EscapedClassD != 0)
                         return;
 
                     Methods.PlayAnnouncement(plugin.Config.EscapeClassD);
                     break;
                 case RoleType.Scientist:
-                    if (plugin.Config.EscapeScientist.OnlyPlayFirst && RoundSummary.escaped_scientists != 0)
+                    if (plugin.Config.EscapeScientist.OnlyPlayFirst && RoundSummary.EscapedScientists != 0)
                         return;
 
                     Methods.PlayAnnouncement(plugin.Config.EscapeScientist);
