@@ -27,6 +27,9 @@ namespace CustomAnnouncements
             if (!string.IsNullOrEmpty(overrideMessage))
                 message = overrideMessage;
 
+            if (string.IsNullOrEmpty(message))
+                return;
+
             message = GetVariableMessage(message);
             if (announcement.IsGlitchy)
                 Cassie.DelayedGlitchyMessage(message, announcement.Delay, announcement.GlitchChance * 0.01f, announcement.JamChance * 0.01f);
