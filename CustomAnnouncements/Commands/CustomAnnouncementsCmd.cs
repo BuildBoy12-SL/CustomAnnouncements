@@ -25,7 +25,7 @@ namespace CustomAnnouncements.Commands
         public CustomAnnouncementsCmd() => LoadGeneratedCommands();
 
         /// <inheritdoc />
-        public override string Command { get; } = "customannouncements";
+        public override string Command => "customannouncements";
 
         /// <inheritdoc />
         public override string[] Aliases { get; } = { "ca" };

@@ -10,6 +10,7 @@ namespace CustomAnnouncements
     using System;
     using System.Linq;
     using Exiled.API.Features;
+    using Exiled.API.Features.Roles;
 
     /// <summary>
     /// A collection of various methods utilized for abstraction.
@@ -74,7 +75,7 @@ namespace CustomAnnouncements
                 new Tuple<string, object>("SciLeft", Player.Get(Team.RSC).Count()),
                 new Tuple<string, object>("CdpLeft", Player.Get(Team.CDP).Count()),
                 new Tuple<string, object>("ChiLeft", Player.Get(Team.CHI).Count()),
-                new Tuple<string, object>("HumansLeft", Player.List.Count(player => player.Team != Team.RIP && player.Team != Team.SCP && player.Team != Team.TUT)),
+                new Tuple<string, object>("HumansLeft", Player.List.Count(player => player.Role.Is(out HumanRole _) && player.Role.Team != Team.TUT)),
                 new Tuple<string, object>("TotalPlayers", Player.List.Count()),
                 new Tuple<string, object>("ScpSubjects", scpCount == 1 ? "ScpSubject" : "ScpSubjects"),
                 new Tuple<string, object>("NtfScpSubjects", $"{(scpCount == 0 ? "NoScpsLeft" : $"AwaitingRecontainment {scpCount} {(scpCount == 1 ? "scpsubject" : "scpsubjects")}")}"),

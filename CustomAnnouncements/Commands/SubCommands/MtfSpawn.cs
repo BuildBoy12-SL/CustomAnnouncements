@@ -17,13 +17,13 @@ namespace CustomAnnouncements.Commands.SubCommands
     public class MtfSpawn : ICommand
     {
         /// <inheritdoc />
-        public string Command { get; } = "mtfspawn";
+        public string Command => "mtfspawn";
 
         /// <inheritdoc />
         public string[] Aliases { get; } = { "ms" };
 
         /// <inheritdoc />
-        public string Description { get; } = "Views or plays the MtfSpawn announcement.";
+        public string Description => "Views or plays the MtfSpawn announcement.";
 
         /// <inheritdoc />
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)

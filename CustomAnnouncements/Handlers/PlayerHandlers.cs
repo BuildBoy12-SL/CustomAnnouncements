@@ -37,7 +37,7 @@ namespace CustomAnnouncements.Handlers
         /// <inheritdoc cref="Exiled.Events.Handlers.Player.OnEscaping(EscapingEventArgs)"/>
         public void OnEscaping(EscapingEventArgs ev)
         {
-            switch (ev.Player.Role)
+            switch (ev.Player.Role.Type)
             {
                 case RoleType.ClassD:
                     if (plugin.Config.EscapeClassD.OnlyPlayFirst && RoundSummary.EscapedClassD != 0)

@@ -17,13 +17,13 @@ namespace CustomAnnouncements.Commands.SubCommands
     public class RoundStart : ICommand
     {
         /// <inheritdoc/>
-        public string Command { get; } = "roundstart";
+        public string Command => "roundstart";
 
         /// <inheritdoc />
         public string[] Aliases { get; } = { "rs" };
 
         /// <inheritdoc />
-        public string Description { get; } = "Views or plays the RoundStart announcement.";
+        public string Description => "Views or plays the RoundStart announcement.";
 
         /// <inheritdoc />
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)

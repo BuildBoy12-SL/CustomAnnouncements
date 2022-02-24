@@ -19,13 +19,13 @@ namespace CustomAnnouncements.Commands.SubCommands
     public class FakeScp : ICommand
     {
         /// <inheritdoc />
-        public string Command { get; } = "fakescp";
+        public string Command => "fakescp";
 
         /// <inheritdoc />
         public string[] Aliases { get; } = { "scpa", "fscp" };
 
         /// <inheritdoc />
-        public string Description { get; } = "Fakes a Scp death announcement.";
+        public string Description => "Fakes a Scp death announcement.";
 
         /// <inheritdoc />
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
@@ -73,7 +73,7 @@ namespace CustomAnnouncements.Commands.SubCommands
                     break;
                 case "m":
                 case "mtf":
-                    Player dummy = Player.List.FirstOrDefault(player => player.Team == Team.MTF);
+                    Player dummy = Player.List.FirstOrDefault(player => player.Role.Team == Team.MTF);
                     if (dummy == null)
                     {
                         response = "There are currently no alive MTF to mimic the unit of.";

@@ -17,13 +17,13 @@ namespace CustomAnnouncements.Commands.SubCommands
     public class PlayerJoined : ICommand
     {
         /// <inheritdoc />
-        public string Command { get; } = "playerjoined";
+        public string Command => "playerjoined";
 
         /// <inheritdoc />
         public string[] Aliases { get; } = { "pj" };
 
         /// <inheritdoc />
-        public string Description { get; } = "Views or plays the PlayerJoined announcement.";
+        public string Description => "Views or plays the PlayerJoined announcement.";
 
         /// <inheritdoc />
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)

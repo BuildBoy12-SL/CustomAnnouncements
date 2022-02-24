@@ -18,13 +18,13 @@ namespace CustomAnnouncements.Commands.SubCommands
     public class FakeMtf : ICommand
     {
         /// <inheritdoc />
-        public string Command { get; } = "fakemtf";
+        public string Command => "fakemtf";
 
         /// <inheritdoc />
         public string[] Aliases { get; } = { "mtfa", "fmtf" };
 
         /// <inheritdoc />
-        public string Description { get; } = "Fakes a Mtf spawn announcement.";
+        public string Description => "Fakes a Mtf spawn announcement.";
 
         /// <inheritdoc />
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)

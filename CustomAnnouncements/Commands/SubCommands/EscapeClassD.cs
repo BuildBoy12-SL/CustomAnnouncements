@@ -23,7 +23,7 @@ namespace CustomAnnouncements.Commands.SubCommands
         public string[] Aliases { get; } = { "ed" };
 
         /// <inheritdoc />
-        public string Description { get; } = "Views or plays the EscapeClassD announcement.";
+        public string Description => "Views or plays the EscapeClassD announcement.";
 
         /// <inheritdoc />
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)

@@ -19,26 +19,23 @@ namespace CustomAnnouncements
     /// </summary>
     public class Plugin : Plugin<Config>
     {
-        private static readonly Plugin InstanceValue = new Plugin();
         private MapHandlers mapHandlers;
         private PlayerHandlers playerHandlers;
         private ServerHandlers serverHandlers;
 
-        private Plugin()
-        {
-        }
-
         /// <summary>
         /// Gets a static instance of the <see cref="Plugin"/> class.
         /// </summary>
-        public static Plugin Instance { get; } = InstanceValue;
+        public static Plugin Instance { get; private set; }
 
         /// <inheritdoc />
-        public override Version RequiredExiledVersion { get; } = new Version(3, 0, 0);
+        public override Version RequiredExiledVersion { get; } = new Version(5, 0, 0);
 
         /// <inheritdoc />
         public override void OnEnabled()
         {
+            Instance = this;
+
             mapHandlers = new MapHandlers(this);
             playerHandlers = new PlayerHandlers(this);
             serverHandlers = new ServerHandlers(this);
@@ -60,9 +57,12 @@ namespace CustomAnnouncements
             ServerEvents.RespawningTeam -= serverHandlers.OnRespawningTeam;
             ServerEvents.RoundEnded -= serverHandlers.OnRoundEnded;
             ServerEvents.RoundStarted -= serverHandlers.OnRoundStarted;
+
             mapHandlers = null;
             playerHandlers = null;
             serverHandlers = null;
+
+            Instance = null;
             base.OnDisabled();
         }
     }
