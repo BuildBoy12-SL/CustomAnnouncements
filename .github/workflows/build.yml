@@ -1,4 +1,4 @@
-name: BuildLib CI
+name: CustomAnnouncements CI
 on: [push, pull_request]
 
 jobs:
